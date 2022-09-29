@@ -1,7 +1,7 @@
 <template>
   <main>
 
-    <div class="d-flex flex-wrap"> 
+    <div class="container d-flex flex-wrap gap-4"> 
       <CardComponent :arrayElement="film" v-for='film in movies' :key="film.id" />
 
       <CardComponent :arrayElement="serie" v-for="serie in series" :key="serie.id" />
@@ -35,6 +35,14 @@ export default {
     background-size: cover;
     background-repeat: no-repeat;
     overflow-y: auto;
+    padding-top: 10vh;
+
+div{
+  
+ 
+  
+}
+
   }
 
 </style>
