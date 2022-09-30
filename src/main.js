@@ -4,6 +4,7 @@ import '@fortawesome/fontawesome-free/css/all.css'
 import '@fortawesome/fontawesome-free/js/all.js'
 import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import 'flag-icons/css/flag-icons.css'
 
 
 Vue.config.productionTip = false

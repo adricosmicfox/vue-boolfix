@@ -1,11 +1,53 @@
 <template>
 
-  <div>
-    <img v-if="arrayElement.poster_path" :src="baseUrl+arrayElement.poster_path" :alt="arrayElement.title ? arrayElement.title : arrayElement.name">
-    <img v-else src="../assets/no_poster.jpg" alt="Poster-not-available" class="am-noposter">
-        <!-- <img :src="baseUrl+arrayElement.poster_path"> -->
-  </div>
+  <section>
 
+    <div v-if="!this.active" @click="changeStatus()" class="poster">
+      <img v-if="arrayElement.poster_path" :src="baseUrl+arrayElement.poster_path" :alt="arrayElement.title ? arrayElement.title : arrayElement.name">
+      <img v-else src="../assets/no_poster.jpg" alt="Poster-not-available" class="am-noposter">
+    </div>
+
+    <div v-else @click="changeStatus()" class="informations">
+      <div> 
+        <h3> Titolo:</h3> 
+        {{arrayElement.title ? arrayElement.title : arrayElement.name}}
+      </div>
+      <div> 
+      <h3> Titolo originale:</h3> 
+        {{arrayElement.title ? arrayElement.original_title : arrayElement.original_name}}
+      </div>
+
+      <div>
+        <div v-if="arrayElement.original_language === 'it'">
+          <h4>Lingua:</h4>
+          <span :class="`fi fi-it`"></span>
+        </div>
+        <div v-else-if="arrayElement.original_language === 'es'">
+          <h4>Lingua:</h4>
+          <span :class="`fi fi-es`"></span>
+        </div>
+        <div v-else-if="arrayElement.original_language === 'en'">
+          <h4>Lingua:</h4>
+          <span :class="`fi fi-gb`"></span>
+        </div>
+        <div v-else-if="arrayElement.original_language === 'ja'">
+          <h4>Lingua:</h4>
+          <span :class="`fi fi-jp`"></span>
+        </div>
+        <div v-else-if="arrayElement.original_language === 'fr'">
+          <h4>Lingua:</h4>
+          <span :class="`fi fi-fr`"></span>
+        </div>
+        <div v-else>
+          <h4>Lingua:</h4>
+          {{ arrayElement.original_language }}
+        </div>
+      </div>
+    </div>
+
+    
+
+  </section>
 
 </template>
 
@@ -19,9 +61,18 @@ name: "CardComponent",
 props:["arrayElement"],
 data(){
     return {
-        baseUrl:"https://image.tmdb.org/t/p/w300"
+        baseUrl:"https://image.tmdb.org/t/p/w300",
+        active:false
     }
+},
+
+methods: {
+  changeStatus() {
+    this.active = !this.active
+  }
 }
+
+
 }
 </script>
 
@@ -29,11 +80,34 @@ data(){
 
 
 <style lang="scss" scoped>
+@import "~@fortawesome/fontawesome-free/css/all.min.css";
+
+.informations{
+  background-color: white;
+  height: 450px;
+  width: 300px;
+  
+  }
 
 .am-noposter {
     height: 450px;
     width: 300px;
   }
+
+section:hover .informations {
+
+}
+
+.poster:hover {
+  
+}
+
+.poster{
+  height: 450px;
+  width: 300px;
+ 
+}
+
 
 
 </style>
