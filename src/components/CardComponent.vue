@@ -43,12 +43,15 @@
           {{ arrayElement.original_language }}
         </div>
       </div>
+      <div>
+
+      <h5>Voto:</h5>
+        <i class="fas fa-star gold" v-for="(item, index) in this.vote" :key="'A' + index"></i>
+
+        <i class="fas fa-star" v-for="(item, index) in this.voidStar" :key="'B' + index"></i>
+      </div>
     </div>
-
-    
-
   </section>
-
 </template>
 
 
@@ -62,7 +65,9 @@ props:["arrayElement"],
 data(){
     return {
         baseUrl:"https://image.tmdb.org/t/p/w300",
-        active:false
+        active:false,
+        vote: Math.ceil(this.arrayElement.vote_average / 2),
+        voidStar: 5 - Math.ceil(this.arrayElement.vote_average / 2),
     }
 },
 
@@ -105,5 +110,7 @@ img{
   border-radius: 20px;
 }
 
-
+.gold {
+color: gold;
+}
 </style>
