@@ -3,11 +3,11 @@
   <section>
 
     <div v-if="!this.active" @click="changeStatus()" class="poster">
-      <img v-if="arrayElement.poster_path" :src="baseUrl+arrayElement.poster_path" :alt="arrayElement.title ? arrayElement.title : arrayElement.name">
+      <img class="w-100 h-100" v-if="arrayElement.poster_path" :src="baseUrl+arrayElement.poster_path" :alt="arrayElement.title ? arrayElement.title : arrayElement.name">
       <img v-else src="../assets/no_poster.jpg" alt="Poster-not-available" class="am-noposter">
     </div>
 
-    <div v-else @click="changeStatus()" class="informations">
+    <div v-else @click="changeStatus()" class="informations d-flex p-3 flex-column">
       <div> 
         <h3> Titolo:</h3> 
         {{arrayElement.title ? arrayElement.title : arrayElement.name}}
@@ -83,31 +83,27 @@ methods: {
 @import "~@fortawesome/fontawesome-free/css/all.min.css";
 
 .informations{
-  background-color: white;
+  color: white;
   height: 450px;
   width: 300px;
-  
+  border-radius: 20px;
+  background-color: rgba(0, 0, 0, 0.525);
+  box-shadow: 1px 4px 30px 5px #e9e7e7ad;
   }
 
 .am-noposter {
     height: 450px;
     width: 300px;
-  }
-
-section:hover .informations {
-
-}
-
-.poster:hover {
-  
 }
 
 .poster{
   height: 450px;
   width: 300px;
- 
 }
 
+img{
+  border-radius: 20px;
+}
 
 
 </style>
